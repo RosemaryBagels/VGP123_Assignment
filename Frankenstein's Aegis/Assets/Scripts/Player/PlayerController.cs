@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(SpriteRenderer), typeof(Animator))]
 
@@ -111,6 +112,19 @@ public class PlayerController : MonoBehaviour
         {
             isFlipped = (hInput < 0);
             sr.flipX = isFlipped;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Scene2"))
+        {
+            SceneManager.LoadScene(2);
+        }
+
+        if (collision.gameObject.CompareTag("Scene3"))
+        {
+            SceneManager.LoadScene(3);
         }
     }
 }

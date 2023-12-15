@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
 
         if (maxHealth <= 0)
-            maxHealth = 10;
+            maxHealth = 20;
 
         health = maxHealth;
     }
@@ -27,9 +27,11 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
 
+        anim.SetTrigger("Damage");
+
         if (health <= 0)
         {
-            anim.SetTrigger("Death");
+            //anim.SetTrigger("Death");
 
             Destroy(gameObject, 1);
         }

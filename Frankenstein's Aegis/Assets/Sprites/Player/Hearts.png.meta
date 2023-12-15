@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7d36318aaf909a94082edc2cccc8f4aa
+guid: 3db9b2f3768249b499df4479a27c38c6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 18
+  spritePixelsToUnits: 25
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -123,127 +123,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Boar-Walk_0
+      name: RedHeartFull
       rect:
         serializedVersion: 2
-        x: 5
-        y: 0
-        width: 38
-        height: 27
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 0
+        y: 66
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a0f5766db920ad4998132665d2b9a2e
-      internalID: -1511996448
+      spriteID: c70c7d77536899544a694e02403a51b8
+      internalID: 642070409
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boar-Walk_1
+      name: RedHeart34
       rect:
         serializedVersion: 2
-        x: 53
-        y: 0
-        width: 38
-        height: 26
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 32
+        y: 66
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d6620c6df4a5b940a1bfe9057267415
-      internalID: 1399157685
+      spriteID: cdeee82173957074eb3bbfeef404ce5f
+      internalID: 346281506
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boar-Walk_2
+      name: RedHeart12
       rect:
         serializedVersion: 2
-        x: 101
-        y: 0
-        width: 38
-        height: 27
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 64
+        y: 66
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f8217de36c4a11488367736f4da5845
-      internalID: -324864516
+      spriteID: 5c893bff040f62646908a7fab0e44951
+      internalID: 2028817812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boar-Walk_3
+      name: RedHeart14
       rect:
         serializedVersion: 2
-        x: 149
-        y: 0
-        width: 38
-        height: 27
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 96
+        y: 66
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68deea371064b474dac9bd048e05cb00
-      internalID: 1477016638
+      spriteID: eaa908b8818850249ae3c5bf044b10a8
+      internalID: 1533012371
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boar-Walk_4
+      name: HeartEmpty
       rect:
         serializedVersion: 2
-        x: 197
-        y: 0
-        width: 38
-        height: 26
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 128
+        y: 66
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a8588ed81bb96449b940c540cf56556
-      internalID: 225004973
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Boar-Walk_5
-      rect:
-        serializedVersion: 2
-        x: 245
-        y: 0
-        width: 38
-        height: 27
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 12aad8f6ae682934bb300e7d97c8de89
-      internalID: 48985561
+      spriteID: 99b6cb062fdc9af4190b44d16fe4f743
+      internalID: 790887780
       vertices: []
       indices: 
       edges: []
@@ -259,12 +238,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Boar-Walk_0: -1511996448
-      Boar-Walk_1: 1399157685
-      Boar-Walk_2: -324864516
-      Boar-Walk_3: 1477016638
-      Boar-Walk_4: 225004973
-      Boar-Walk_5: 48985561
+      HeartEmpty: 790887780
+      RedHeart12: 2028817812
+      RedHeart14: 1533012371
+      RedHeart34: 346281506
+      RedHeartFull: 642070409
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

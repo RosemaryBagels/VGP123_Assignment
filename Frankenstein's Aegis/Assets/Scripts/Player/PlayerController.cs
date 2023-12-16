@@ -77,7 +77,9 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, isGroundLayer);
         if (isGrounded) rb.gravityScale = 1;
 
-        if (curPlayingClips.Length > 0)
+        if (!CanvasManager.gameIsPaused)
+        {
+            if (curPlayingClips.Length > 0)
         {
             if (curPlayingClips[0].clip.name == "fire")
                 rb.velocity = Vector2.zero;            
@@ -112,6 +114,8 @@ public class PlayerController : MonoBehaviour
         {
             isFlipped = (hInput < 0);
             sr.flipX = isFlipped;
+        }
+
         }
     }
 

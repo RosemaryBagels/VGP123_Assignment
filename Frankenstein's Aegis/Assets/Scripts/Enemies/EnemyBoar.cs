@@ -8,17 +8,27 @@ public class EnemyBoar : Enemy
 {
     Rigidbody2D rb;
     public float xSpeed;
+    AudioSourceManager asm;
+
+    public AudioClip boarHitSound;
+    public AudioClip boarDeathSound;
 
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
 
+        asm = GetComponent<AudioSourceManager>();
         rb = GetComponent<Rigidbody2D>();
         rb.sleepMode = RigidbodySleepMode2D.NeverSleep;
 
+        if (!asm) Debug.Log("yer pig needs an audiosource manager");
+
         if (xSpeed <= 0)
             xSpeed = 2;
+
+        OnTakeDamage += PlayHitSound;
+        OnDeath += PlayDeathSound;
     }
 
     // Update is called once per frame
@@ -32,12 +42,30 @@ public class EnemyBoar : Enemy
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D colllision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (colllision.tag == "Barrier")
+        if (collision.tag == "Barrier")
         {
             sr.flipX = !sr.flipX;
         }
+    }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            GameManager.Instance.health--;
+        }
+    }
+
+    void PlayHitSound()
+    {
+        asm.PlayOneShot(boarHitSound, false);
+    }
+
+    void PlayDeathSound()
+    {
+        asm.PlayOneShot(boarDeathSound, false);
+        Debug.Log("Death Sound Called");
     }
 }

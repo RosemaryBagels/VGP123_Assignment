@@ -31,7 +31,7 @@ public class CanvasManager : MonoBehaviour
     public Slider musicVSlider;
     public Slider sfxVSlider;
 
-    //public AudioMixer audioMixer;
+    public AudioMixer audioMixer;
     public static bool gameIsPaused;
 
     // Start is called before the first frame update
@@ -57,6 +57,53 @@ public class CanvasManager : MonoBehaviour
 
         if (quitButton)
             quitButton.onClick.AddListener(Quit);
+
+        if (masterVSlider)
+        {
+            masterVSlider.onValueChanged.AddListener((value) => OnMasterSliderValueChanged(value));
+            float newValue;
+            audioMixer.GetFloat("MasterVol", out newValue);
+            masterVSlider.value = newValue + 80;
+            if (masterVSliderText)
+                masterVSliderText.text = (Mathf.Ceil(newValue + 80).ToString());
+        }
+
+        if (musicVSlider)
+        {
+            musicVSlider.onValueChanged.AddListener((value) => OnMusicSliderValueChanged(value));
+            float newValue;
+            audioMixer.GetFloat("MusicVol", out newValue);
+            musicVSlider.value = newValue + 80;
+            if (musicVSliderText)
+                musicVSliderText.text = (Mathf.Ceil(newValue + 80).ToString());
+        }
+
+        if (sfxVSlider)
+        {
+            sfxVSlider.onValueChanged.AddListener((value) => OnSFXSliderValueChanged(value));
+            float newValue;
+            audioMixer.GetFloat("SFXVol", out newValue);
+            sfxVSlider.value = newValue + 80;
+            if (sfxVSliderText)
+                sfxVSliderText.text = (Mathf.Ceil(newValue + 80).ToString());
+        }
+    }
+    void OnMasterSliderValueChanged(float value)
+    {
+        masterVSliderText.text = value.ToString();
+        audioMixer.SetFloat("MasterVol", value - 80);
+    }
+
+    void OnMusicSliderValueChanged(float value)
+    {
+        musicVSliderText.text = value.ToString();
+        audioMixer.SetFloat("MusicVol", value - 80);
+    }
+
+    void OnSFXSliderValueChanged(float value)
+    {
+        sfxVSliderText.text = value.ToString();
+        audioMixer.SetFloat("SFXVol", value - 80);
     }
 
     // Update is called once per frame

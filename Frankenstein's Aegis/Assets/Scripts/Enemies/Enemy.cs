@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,9 @@ public class Enemy : MonoBehaviour
 {
     protected SpriteRenderer sr;
     protected Animator anim;
+
+    public event Action OnTakeDamage;
+    public event Action OnDeath;
 
     protected int health;
     public int maxHealth;
@@ -31,9 +35,10 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
-            //anim.SetTrigger("Death");
-
-            Destroy(gameObject, 1);
+            OnDeath?.Invoke();
+            Destroy(gameObject, 0.8f);
         }
+
+        OnTakeDamage?.Invoke();
     }
 }

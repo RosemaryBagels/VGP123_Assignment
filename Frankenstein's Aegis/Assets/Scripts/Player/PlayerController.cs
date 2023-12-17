@@ -10,7 +10,9 @@ public class PlayerController : MonoBehaviour
     //Component Refernces
     Rigidbody2D rb;
     SpriteRenderer sr;
+    AudioSourceManager asm;
     Animator anim;
+    Shoot shootScript;
 
     //Movement variables
     public float speed = 6.0f;
@@ -21,6 +23,12 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public LayerMask isGroundLayer;
     public float groundCheckRadius = 0.02f;
+
+    //Audio stuff
+    public AudioClip jumpSound;
+    public AudioClip fireSound;
+    public AudioClip playerDamageSound;
+    public AudioClip shatterSound;
 
     public static bool isFiring;
     public static bool isFlipped;
@@ -33,11 +41,15 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        asm = GetComponent<AudioSourceManager>();
+        shootScript = GetComponent<Shoot>();
 
         //checking for dirty data
         if (rb == null) Debug.Log("No RigidBody Reference");
         if (sr == null) Debug.Log("No Sprite Renderer Reference");
         if (anim == null) Debug.Log("No Animator Reference");
+        if (asm == null) Debug.Log("No audio source manager!");
+        if (!shootScript) Debug.Log("No shoot noise for us!");
 
         if (groundCheckRadius <= 0)
         {
@@ -66,6 +78,8 @@ public class PlayerController : MonoBehaviour
         }
         weapon = transform.GetChild(0).gameObject;
         weapon.SetActive(false);
+
+        shootScript.OnProjectileSpawn += OnProjectileSpawned;
     }
 
     // Update is called once per frame
@@ -97,6 +111,7 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
             rb.AddForce(Vector2.up * jumpForce);
+            asm.PlayOneShot(jumpSound, false);
         }
 
         if (isGrounded && Input.GetButton("Fire1"))
@@ -117,6 +132,18 @@ public class PlayerController : MonoBehaviour
         }
 
         }
+    }
+
+    void OnProjectileSpawned()
+    {
+        asm.PlayOneShot(fireSound, false);
+    }
+
+    public void TakeDamage()
+    {
+        Debug.Log("oof");
+        asm.PlayOneShot(playerDamageSound, false);
+        anim.SetTrigger("damage");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

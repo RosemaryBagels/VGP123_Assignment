@@ -45,5 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 4091824262308641249, guid: 9f373459e2b003140bd4e77f7f5c9cc4, type: 3}
+  healthPrefab: {fileID: 8964740435857512222, guid: 12973eb15f28cc54b996742b70d6430f, type: 3}
   playerInstance: {fileID: 0}
   spawnPoint: {fileID: 0}
+  healthCard: {fileID: 0}
+  OnHealthValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  maxHealth: 6

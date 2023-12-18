@@ -60,11 +60,13 @@ public class EnemyBoar : Enemy
 
     void PlayHitSound()
     {
+        anim.SetTrigger("Damage");
         asm.PlayOneShot(boarHitSound, false);
     }
 
     void PlayDeathSound()
     {
+        anim.SetTrigger("Damage");
         asm.PlayOneShot(boarDeathSound, false);
         Debug.Log("Death Sound Called");
     }

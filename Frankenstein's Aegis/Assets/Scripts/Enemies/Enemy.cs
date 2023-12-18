@@ -31,14 +31,14 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
 
-        anim.SetTrigger("Damage");
-
         if (health <= 0)
         {
             OnDeath?.Invoke();
             Destroy(gameObject, 0.8f);
         }
-
+        else
+        { 
         OnTakeDamage?.Invoke();
+        }
     }
 }

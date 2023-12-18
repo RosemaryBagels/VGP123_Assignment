@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -7,8 +8,15 @@ using UnityEngine;
 public class EnemySnail : Enemy
 {
     Rigidbody2D rb;
+    AudioSourceManager asm;
     public float xSpeed;
+    public float speed1;
+    public float speed2;
     public int damage;
+    public float range;
+    public GameObject shell;
+    public AudioClip snailHitSound;
+    public AudioClip snailDeathSound;
 
     // Start is called before the first frame update
     public override void Start()
@@ -17,11 +25,19 @@ public class EnemySnail : Enemy
 
         rb = GetComponent<Rigidbody2D>();
         rb.sleepMode = RigidbodySleepMode2D.NeverSleep;
+        asm = GetComponent<AudioSourceManager>();
 
-        if (xSpeed <= 0)
-            xSpeed = 0.5f;
+        if (!asm) Debug.Log("yer snail needs an audiosource manager");
+        if (!shell) Debug.Log("yer snail needs its shell attached");
 
+        if (xSpeed <= 0) xSpeed = 0.2f;
+        if (speed1 <= 0) speed1 = 0.2f;
+        if (speed2 <= 0) speed2 = 3.0f;
         if (damage <= 0) damage = 2;
+        if (range <= 0) range = 3.0f;
+
+        OnTakeDamage += PlayHitSound;
+        OnDeath += PlayDeathSound;
     }
 
     // Update is called once per frame
@@ -31,8 +47,27 @@ public class EnemySnail : Enemy
 
         if (curPlayingClips[0].clip.name == "Walk")
         {
-            rb.velocity = sr.flipX ? new Vector2(-xSpeed, rb.velocity.y) : new Vector2(xSpeed, rb.velocity.y);
+            rb.velocity = !sr.flipX ? new Vector2(-xSpeed, rb.velocity.y) : new Vector2(xSpeed, rb.velocity.y);
 
+        }
+
+        if (curPlayingClips[0].clip.name == "Idle")
+        {
+            rb.velocity = !sr.flipX ? new Vector2(-xSpeed, rb.velocity.y) : new Vector2(xSpeed, rb.velocity.y);
+
+        }
+
+        float distance = Vector3.Distance(GameManager.Instance.playerInstance.transform.position, transform.position);
+
+        if (distance <= range)
+        {
+            anim.SetBool("isInRange", true);
+            xSpeed = speed2;
+        }
+        else
+        {
+            anim.SetBool("isInRange", false);
+            xSpeed = speed1;
         }
     }
 
@@ -42,13 +77,29 @@ public class EnemySnail : Enemy
         {
             sr.flipX = !sr.flipX;
         }
+    }
 
-        if (collision.tag == "Player")
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
         {
-            //GetComponent<PlayerController>().TakeDamage(damage);
-            //... so are we doin health in the game manager orrr.....
+            GameManager.Instance.health -= damage;
         }
+    }
 
+    void PlayHitSound()
+    {
+        anim.SetTrigger("Damage");
+        asm.PlayOneShot(snailHitSound, false);
+    }
+
+    void PlayDeathSound()
+    {
+        asm.PlayOneShot(snailDeathSound, false);
+        anim.SetTrigger("Death");
+        Debug.Log("Death Sound Called");
+        Instantiate(shell);
+        shell.transform.position = transform.position;
     }
 
 }

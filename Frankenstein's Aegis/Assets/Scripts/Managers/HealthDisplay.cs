@@ -6,14 +6,19 @@ using UnityEngine;
 public class HealthDisplay : MonoBehaviour
 {
     public GameObject heartPrefab;
-    int maxHealth = 6; //GameManager.Instance.maxHealth; hard coded BAD
-    int curHealth = 6;
+    int maxHealth;
+    int curHealth;
     List<Heart> hearts = new List<Heart>();
 
     private void Start()
     {
         //Debug.Log("Start method called");
+        maxHealth = GameManager.Instance.maxHealth;
         curHealth = GameManager.Instance.health;
+
+        if (maxHealth <= 0) maxHealth = 6;
+        if (curHealth <= 0) curHealth = 6;
+
         DrawHearts();
         GameManager.Instance.OnHealthValueChanged.AddListener((value) => UpdateCurHealth(value));        
     }

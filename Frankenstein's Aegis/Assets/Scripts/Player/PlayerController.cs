@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage()
     {
-        Debug.Log("oof");
+        //Debug.Log("oof");
         asm.PlayOneShot(playerDamageSound, false);
         anim.SetTrigger("damage");
     }
@@ -157,5 +157,11 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene(3);
         }
+    }
+
+    public void OnDeath()
+    {
+        anim.SetTrigger("death");
+        Destroy(gameObject, 3);
     }
 }

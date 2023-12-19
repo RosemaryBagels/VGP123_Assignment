@@ -12,13 +12,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => instance;
 
     public PlayerController playerPrefab;
-    //public HealthDisplay healthPrefab;
 
     [HideInInspector] public PlayerController playerInstance;
     [HideInInspector] public Transform spawnPoint;
-    //[HideInInspector] public HealthDisplay healthCard;
 
     public UnityEvent<int> OnHealthValueChanged;
+    public UnityEvent<int> OnResourceValueChanged;
+    public UnityEvent OnDeath;
 
     private int _health = 6;
     public int maxHealth = 6;
@@ -36,12 +36,24 @@ public class GameManager : MonoBehaviour
                 _health = maxHealth;
 
             if (_health <= 0)
-                //game over
-                Debug.Log("Game Over");
+                GameOver();
 
             Debug.Log("Health has been set to: " + _health.ToString());
             OnHealthValueChanged?.Invoke(_health); //pings live text to update
 
+        }
+    }
+
+    private int _count = 0;
+    public int count
+    {
+        get => _count;
+        set
+        {
+            _count = value;
+
+            //Debug.Log("Resource count has been set to: " + _count.ToString());
+            OnResourceValueChanged?.Invoke(_count);
         }
     }
 
@@ -63,6 +75,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //check for press esc - pause???
+    }
+
+    public void GameOver()
+    {
+        OnDeath?.Invoke();
+        playerInstance.OnDeath();
     }
 
     public void ChangeScene(int sceneIndex)

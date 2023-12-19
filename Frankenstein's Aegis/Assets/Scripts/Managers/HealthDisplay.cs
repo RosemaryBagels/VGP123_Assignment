@@ -20,7 +20,7 @@ public class HealthDisplay : MonoBehaviour
         if (curHealth <= 0) curHealth = 6;
 
         DrawHearts();
-        GameManager.Instance.OnHealthValueChanged.AddListener((value) => UpdateCurHealth(value));        
+        GameManager.Instance.OnHealthValueChanged.AddListener((value) => UpdateCurHealth(value));
     }
 
     void UpdateCurHealth(int value)

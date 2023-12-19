@@ -10,18 +10,20 @@ public class CanvasManager : MonoBehaviour
     public Button playButton;
     public Button settingsButton;
     public Button quitButton;
+    public Button quitButton2;
     public Button backToMainButton;
     public Button backToPauseButton;
     public Button reloadMainButton;
+    public Button reloadMainButton2;
     public Button resumeButton;
 
     [Header("Menus")]
     public GameObject mainMenu;
     public GameObject pauseMenu;
     public GameObject settingsMenu;
+    public GameObject gameOver;
 
     [Header("Text")]
-    //public Text livesText;
     public Text masterVSliderText;
     public Text musicVSliderText;
     public Text sfxVSliderText;
@@ -41,7 +43,16 @@ public class CanvasManager : MonoBehaviour
             playButton.onClick.AddListener(() => GameManager.Instance.ChangeScene(1));
 
         if (reloadMainButton)
+        {
+            gameIsPaused = false;
             reloadMainButton.onClick.AddListener(() => GameManager.Instance.ChangeScene(0));
+        }
+
+        if (reloadMainButton2)
+        {
+            gameIsPaused = false;
+            reloadMainButton2.onClick.AddListener(() => GameManager.Instance.ChangeScene(0));
+        }
 
         if (resumeButton)
             resumeButton.onClick.AddListener(UnpauseGame);
@@ -57,6 +68,9 @@ public class CanvasManager : MonoBehaviour
 
         if (quitButton)
             quitButton.onClick.AddListener(Quit);
+
+        if (quitButton2)
+            quitButton2.onClick.AddListener(Quit);
 
         if (masterVSlider)
         {
@@ -87,6 +101,7 @@ public class CanvasManager : MonoBehaviour
             if (sfxVSliderText)
                 sfxVSliderText.text = (Mathf.Ceil(newValue + 80).ToString());
         }
+        GameManager.Instance.OnDeath.AddListener(ShowGameOver);
     }
     void OnMasterSliderValueChanged(float value)
     {
@@ -160,6 +175,11 @@ public class CanvasManager : MonoBehaviour
     {
         pauseMenu.SetActive(true);
         settingsMenu.SetActive(false);
+    }
+
+    void ShowGameOver()
+    {
+        gameOver.SetActive(true);
     }
 
 }

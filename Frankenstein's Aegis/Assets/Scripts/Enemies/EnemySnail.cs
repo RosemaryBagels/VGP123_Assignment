@@ -14,7 +14,7 @@ public class EnemySnail : Enemy
     public float speed2;
     public int damage;
     public float range;
-    public GameObject shell;
+    public GameObject marker;
     public AudioClip snailHitSound;
     public AudioClip snailDeathSound;
 
@@ -28,7 +28,7 @@ public class EnemySnail : Enemy
         asm = GetComponent<AudioSourceManager>();
 
         if (!asm) Debug.Log("yer snail needs an audiosource manager");
-        if (!shell) Debug.Log("yer snail needs its shell attached");
+        if (!marker) Debug.Log("yer snail needs its shell attached");
 
         if (xSpeed <= 0) xSpeed = 0.2f;
         if (speed1 <= 0) speed1 = 0.2f;
@@ -98,8 +98,9 @@ public class EnemySnail : Enemy
         asm.PlayOneShot(snailDeathSound, false);
         anim.SetTrigger("Death");
         Debug.Log("Death Sound Called");
-        Instantiate(shell);
-        shell.transform.position = transform.position;
-    }
+        string uniqueIdentifier = gameObject.GetInstanceID().ToString();
 
+        GameObject instantiatedMarker = Instantiate(marker, transform.position, Quaternion.identity);
+        instantiatedMarker.name = "Marker_" + uniqueIdentifier;
+    }
 }

@@ -6,6 +6,7 @@ public class Destructable : MonoBehaviour
 {
     public int health;
     AudioSourceManager asm;
+    public GameObject marker;
 
     public AudioClip boxHitSound;
     public AudioClip shatterSound;
@@ -15,6 +16,7 @@ public class Destructable : MonoBehaviour
     {
         asm = GetComponent<AudioSourceManager>();
         if (!asm) Debug.Log("yer box needs an audiosource manager");
+        if (!marker) Debug.Log("yer box needs a marker attached");
 
         if (health <= 0) health = 15;
     }
@@ -27,10 +29,12 @@ public class Destructable : MonoBehaviour
         if (health <= 0)
         {
             PlayShatter();
-            Destroy(gameObject, 0.6f);
-        }
+            string uniqueIdentifier = gameObject.GetInstanceID().ToString();
 
-        
+            GameObject instantiatedMarker = Instantiate(marker, transform.position, Quaternion.identity);
+            instantiatedMarker.name = "Marker_" + uniqueIdentifier;
+            Destroy(gameObject, 0.6f);
+        }        
     }
 
     public void PlayShatter()

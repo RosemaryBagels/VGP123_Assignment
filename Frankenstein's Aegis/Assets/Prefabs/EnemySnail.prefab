@@ -201,7 +201,7 @@ MonoBehaviour:
   speed2: 0
   damage: 0
   range: 5
-  shell: {fileID: 6242488398633263475, guid: d0c5a2683d199d74b88f0bba44d1225c, type: 3}
+  marker: {fileID: 6496106452993537559, guid: 032e7a4ec1c0a5742a118cd1db71e5b0, type: 3}
   snailHitSound: {fileID: 8300000, guid: 396640b7331dd5243b4073bf747fa2e6, type: 3}
   snailDeathSound: {fileID: 8300000, guid: 30a465932e2c3694787bac4218d6b9d1, type: 3}
 --- !u!82 &3495347168474187928
@@ -224,7 +224,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 11.312571
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0

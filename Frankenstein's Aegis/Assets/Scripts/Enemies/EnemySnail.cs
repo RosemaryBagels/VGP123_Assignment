@@ -85,6 +85,11 @@ public class EnemySnail : Enemy
         {
             GameManager.Instance.health -= damage;
         }
+
+        if (collision.gameObject.tag == "Destructable")
+        {
+            sr.flipX = !sr.flipX;
+        }
     }
 
     void PlayHitSound()

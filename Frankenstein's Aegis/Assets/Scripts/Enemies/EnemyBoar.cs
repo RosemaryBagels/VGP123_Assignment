@@ -56,6 +56,11 @@ public class EnemyBoar : Enemy
         {
             GameManager.Instance.health--;
         }
+
+        if (collision.gameObject.tag == "Destructable")
+        {
+            sr.flipX = !sr.flipX;
+        }
     }
 
     void PlayHitSound()

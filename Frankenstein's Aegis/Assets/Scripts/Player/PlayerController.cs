@@ -162,6 +162,7 @@ public class PlayerController : MonoBehaviour
     public void OnDeath()
     {
         anim.SetTrigger("death");
+        CanvasManager.gameIsPaused = true;
         Destroy(gameObject, 3);
     }
 }

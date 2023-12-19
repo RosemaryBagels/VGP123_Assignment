@@ -8,13 +8,16 @@ public class CanvasManager : MonoBehaviour
 {
     [Header("Button")]
     public Button playButton;
+    public Button restartButton;
     public Button settingsButton;
     public Button quitButton;
     public Button quitButton2;
+    public Button quitButton3;
     public Button backToMainButton;
     public Button backToPauseButton;
     public Button reloadMainButton;
     public Button reloadMainButton2;
+    public Button reloadMainButton3;
     public Button resumeButton;
 
     [Header("Menus")]
@@ -22,11 +25,13 @@ public class CanvasManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject settingsMenu;
     public GameObject gameOver;
+    public GameObject victoryScreen;
 
     [Header("Text")]
     public Text masterVSliderText;
     public Text musicVSliderText;
     public Text sfxVSliderText;
+    public Text smallVictoryText;
 
     [Header("Slider")]
     public Slider masterVSlider;
@@ -40,7 +45,16 @@ public class CanvasManager : MonoBehaviour
     void Start()
     {
         if (playButton)
+        { 
             playButton.onClick.AddListener(() => GameManager.Instance.ChangeScene(1));
+            gameIsPaused = false;
+        }
+
+        if (restartButton)
+        {
+            restartButton.onClick.AddListener(() => GameManager.Instance.ChangeScene(1));
+            gameIsPaused = false;
+        }
 
         if (reloadMainButton)
         {
@@ -52,6 +66,12 @@ public class CanvasManager : MonoBehaviour
         {
             gameIsPaused = false;
             reloadMainButton2.onClick.AddListener(() => GameManager.Instance.ChangeScene(0));
+        }
+
+        if (reloadMainButton3)
+        {
+            gameIsPaused = false;
+            reloadMainButton3.onClick.AddListener(() => GameManager.Instance.ChangeScene(0));
         }
 
         if (resumeButton)
@@ -71,6 +91,9 @@ public class CanvasManager : MonoBehaviour
 
         if (quitButton2)
             quitButton2.onClick.AddListener(Quit);
+
+        if (quitButton3)
+            quitButton3.onClick.AddListener(Quit);
 
         if (masterVSlider)
         {
@@ -180,6 +203,15 @@ public class CanvasManager : MonoBehaviour
     void ShowGameOver()
     {
         gameOver.SetActive(true);
+    }
+
+    public void OnWin()
+    {
+        Time.timeScale = 0;
+        gameIsPaused = true;
+        victoryScreen.SetActive(true);
+        smallVictoryText.text = ("You got a total of " + GameManager.Instance.count.ToString() + " runes! Congratulations :D");
+        MusicBox.Instance.PlayVictoryMusic();
     }
 
 }

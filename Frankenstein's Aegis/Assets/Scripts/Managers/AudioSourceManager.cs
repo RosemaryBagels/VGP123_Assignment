@@ -5,9 +5,14 @@ using UnityEngine.Audio;
 
 public class AudioSourceManager : MonoBehaviour
 {
-    List<AudioSource> currentAudioSources = new List<AudioSource>();
+    protected List<AudioSource> currentAudioSources = new List<AudioSource>();
     public AudioMixerGroup sfxGroup;
     public AudioMixerGroup musicGroup;
+
+    public List<AudioSource> GetCurrentAudioSources()
+    {
+        return currentAudioSources;
+    }
 
     // Start is called before the first frame update
     void Start()

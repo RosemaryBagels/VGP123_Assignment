@@ -456,6 +456,63 @@ MonoBehaviour:
   maxXClamp: 9.4
   minYClamp: 4.92
   maxYClamp: 7.97
+--- !u!1001 &417712060
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6283156171229519911, guid: 830ae4619d40c6243b3dc9a26e90ee45, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 6283156171229519911, guid: 830ae4619d40c6243b3dc9a26e90ee45, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 6283156171229519911, guid: 830ae4619d40c6243b3dc9a26e90ee45, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.29882237
+      objectReference: {fileID: 0}
+    - target: {fileID: 6283156171229519911, guid: 830ae4619d40c6243b3dc9a26e90ee45, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6283156171229519911, guid: 830ae4619d40c6243b3dc9a26e90ee45, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6283156171229519911, guid: 830ae4619d40c6243b3dc9a26e90ee45, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6283156171229519911, guid: 830ae4619d40c6243b3dc9a26e90ee45, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6283156171229519911, guid: 830ae4619d40c6243b3dc9a26e90ee45, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6283156171229519911, guid: 830ae4619d40c6243b3dc9a26e90ee45, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6283156171229519911, guid: 830ae4619d40c6243b3dc9a26e90ee45, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6796044520829422447, guid: 830ae4619d40c6243b3dc9a26e90ee45, type: 3}
+      propertyPath: m_Name
+      value: MusicBox
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 830ae4619d40c6243b3dc9a26e90ee45, type: 3}
 --- !u!1001 &437403863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1453,21 +1510,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playButton: {fileID: 456762763}
+  restartButton: {fileID: 0}
   settingsButton: {fileID: 34519385}
   quitButton: {fileID: 34519384}
   quitButton2: {fileID: 456762762}
+  quitButton3: {fileID: 0}
   backToMainButton: {fileID: 0}
   backToPauseButton: {fileID: 578802141}
   reloadMainButton: {fileID: 34519383}
   reloadMainButton2: {fileID: 456762760}
+  reloadMainButton3: {fileID: 0}
   resumeButton: {fileID: 34519382}
   mainMenu: {fileID: 0}
   pauseMenu: {fileID: 34519380}
   settingsMenu: {fileID: 578802139}
   gameOver: {fileID: 456762764}
+  victoryScreen: {fileID: 0}
   masterVSliderText: {fileID: 578802147}
   musicVSliderText: {fileID: 578802146}
   sfxVSliderText: {fileID: 578802145}
+  smallVictoryText: {fileID: 0}
   masterVSlider: {fileID: 578802144}
   musicVSlider: {fileID: 578802143}
   sfxVSlider: {fileID: 578802142}
@@ -2917,3 +2979,4 @@ SceneRoots:
   - {fileID: 980103925}
   - {fileID: 1569233912}
   - {fileID: 830516922}
+  - {fileID: 417712060}
